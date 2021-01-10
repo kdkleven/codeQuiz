@@ -10,8 +10,10 @@ Author: Kyle Kleven
 Course: UofM Coding Boot Camp 
 
 ### The Purpose
-GIVEN I am taking a code quiz
-WHEN I click the start button
+Build a timed quiz using JavaScript that stores high scores so I can gauge my progress compared to my peers.
+
+### How it works
+* Click the start button to start the quiz
 THEN a timer starts and I am presented with a question
 WHEN I answer a question
 THEN I am presented with another question
