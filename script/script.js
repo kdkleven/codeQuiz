@@ -64,14 +64,18 @@ var questions = [
 ];
 
 // function to build quiz
-var output = [];
+
+
 
 for (var i = 0; i < questions.length; i++) {
     
 }
 
-// function to display result
+// answer buttons
 
+
+// function to display result
+var resultEl = document.querySelector("#result");
 
 
 
