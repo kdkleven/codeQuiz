@@ -1,0 +1,7 @@
+.row {
+    border: 1px solid red;
+}
+
+.col-8 {
+    align-content: center;
+}

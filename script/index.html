@@ -1,11 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Code Quiz</title>
+    <title>Coding Quiz</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    
+    <div class="container-fluid"> 
+        <div class="row">
+            <div class="col-">
+                <a href="highscores.html">View Highscores</a>
+            </div>
+            <div class="col"></div>
+            <div class="col">
+                Timer:
+            </div>
+        </div>
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-8" id="question">Question text</div>
+            <div class="col"></div>
+        </div>
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-8">
+                <button id="answer1">answer 1</button></br>
+                <button id="answer2">answer 2</button></br>
+                <button id="answer3">answer 3</button></br>
+                <button id="answer4">answer 4</button></br> 
+            </div>
+            <div class="col"></div>
+        </div>
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-8" id="result">Result text</div>
+            <div class="col"></div>
+        </div>
+    </div>
 </body>
+
 </html>
