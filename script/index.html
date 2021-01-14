@@ -6,40 +6,39 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Coding Quiz</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-            integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
-
+        <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="style.css">
     </head>
 
     <body>
         <div class="container">
-            <div>
-                <a href="highscores.html" id="highscores">View Highscores</a>
-                <p id="timer" class="hidden">Timer: <span id="time"></span></p>
+            <header>
+                <a id="highscoresLink">Highscores</a>
+                <h6 id="timerText" class="timer hidden">Timer: <span id="time"></span></h6>
+            </header>
+
+            <div class="quizStartDiv">
+                <h1>Coding Quiz Challenge</h1>
+                <p>Welcome to the most difficult coding quiz challenge you are ever going to face in your lifetime! Click the thingy to begin.</p>
+                <button id="startBtn">Start Quiz</button>
             </div>
 
-            <div class="start">
-                <h2>Message and intro text</h2>
-                <button id="start">Start Quiz</button>
+            <div class="questionDiv hidden">
+                <h2 id="question"></h2>
             </div>
 
-            <div class="question hidden">
-                <h3 id="questionText">This is where questions should be
-                </h3>
-            </div>
-
-            <div class="answers hidden">
-                <button id="a">Here are the answers</button><br>
-                <button id="b">Here are the answers</button><br>
-                <button id="c">Here are the answers</button><br>
-                <button id="d">Here are the answers</button>
+            <div class="answersDiv hidden">
+                <button id="a"></button><br>
+                <button id="b"></button><br>
+                <button id="c"></button><br>
+                <button id="d"></button>
                 <hr>
             </div>
-            <div class="result hidden">
-                <h4 id="result">Here are the results</h4>
-                <button>Restart Quiz</button>
-                <button>View Highscores</button>
+            <div class="resultDiv" id="result"></div>
+            <div class="endGameDiv hidden">
+                <h3 id="endText">You're Dead. Submit your score as tribute.</h3>
+                <button id="restartBtn">Restart Quiz</button>
+                <button id="highscoresBtn">View Highscores</button>
             </div>
         </div>
         <script src="script.js"></script>
