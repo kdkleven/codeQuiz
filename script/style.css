@@ -5,3 +5,11 @@
 .col-8 {
     align-content: center;
 }
+
+.hidden {
+    display: none;
+}
+
+button {
+    margin: 5px;
+}

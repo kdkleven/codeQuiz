@@ -1,31 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coding Quiz</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
-    
-    <link rel="stylesheet" href="style.css">
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Coding Quiz</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
 
-<body>
-    <div class="container"> 
-            <p><a href="highscores.html" id="highscores">View Highscores</a></p>
-            <p>Timer: <span class="time"></span></p>
-            <p id="question">This is where questions should be</p>
-            <p>
-                <button id="answer1">Here are the answers</button>
-                <button id="answer2">Here are the answers</button>
-                <button id="answer3">Here are the answers</button>
-                <button id="answer4">Here are the answers</button>
-            </p>
-            <p id="result">Here are the results</p>
-    </div>
-    <script src="script.js"></script>
-</body>
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+        <div class="container">
+            <div>
+                <a href="highscores.html" id="highscores">View Highscores</a>
+                <p id="timer" class="hidden">Timer: <span id="time"></span></p>
+            </div>
+
+            <div class="start">
+                <h2>Message and intro text</h2>
+                <button id="start">Start Quiz</button>
+            </div>
+
+            <div class="question hidden">
+                <h3 id="questionText">This is where questions should be
+                </h3>
+            </div>
+
+            <div class="answers hidden">
+                <button id="a">Here are the answers</button><br>
+                <button id="b">Here are the answers</button><br>
+                <button id="c">Here are the answers</button><br>
+                <button id="d">Here are the answers</button>
+                <hr>
+            </div>
+            <div class="result hidden">
+                <h4 id="result">Here are the results</h4>
+                <button>Restart Quiz</button>
+                <button>View Highscores</button>
+            </div>
+        </div>
+        <script src="script.js"></script>
+    </body>
 
 </html>

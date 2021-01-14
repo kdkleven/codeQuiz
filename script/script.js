@@ -40,7 +40,7 @@ var questions = [
             c: "answer 3", 
             d: "answer 4"
         }, 
-        correctAnswer: "a"
+        correctAnswer: "b"
     },
     {
         question: "Q4",
@@ -70,10 +70,43 @@ var currentQuestion = 0;
 
 // function to start game
 // set timer, reset currentQuestion, call loadquestions
+// need a start quiz button
+$("#start").on("click", loadQuestion);
 
 function loadQuestion() {
     // display question and 4 answers
     // call questions array referencing currentQuestion
+    // console.log("Load question was called");
+
+    $(".start").addClass("hidden");
+    $("#timer").removeClass("hidden");
+    $(".question").removeClass("hidden");
+    $(".answers").removeClass("hidden");
+    
+    $("#questionText").html(questions[currentQuestion].question);
+    
+    $("#a").html(questions[currentQuestion].answers.a);
+    $("#b").html(questions[currentQuestion].answers.b);
+    $("#c").html(questions[currentQuestion].answers.c);
+    $("#d").html(questions[currentQuestion].answers.d);
+
+    $("#a").on("click", function(event){
+        response();
+        event.stopPropagation();
+    });
+    
+    $("#b").on("click", response);
+
+    $("#c").on("click", function(event){
+        response();
+        event.stopPropagation();
+    });
+
+    $("#d").on("click", function(event){
+        response();
+        event.stopPropagation();
+    });
+
 }
 
 // function to display result page
@@ -88,11 +121,27 @@ var resultEl = document.querySelector("#result");
 // check if button pressed == questions[].currentquestion.correctAnswer
 // handle correct (load next question and display CORRECT) vs incorrect answer (display incorrect -10s)
 // if seconds < 10, end game set timer to 0
+function response() {
 
+    var response = $(this).attr("id");
+    console.log(response);
+    
+    if (response === questions[currentQuestion].correctAnswer ) {
+        console.log("correct answer");
+    }    
+    else {
+        console.log("incorrect");
+        //decrease timer
+        
+    }
+    currentQuestion++;
+    console.log(currentQuestion);
+    loadQuestion();
+}
 
 // function to set timer
 // // assign variable to the time element and set the timer to 60
-var timeEl = document.querySelector(".time");
+var timeEl = document.querySelector("#time");
 var secondsLeft = 60;
 
 // countdown until the timer is 0 or the number of questions has been answered
