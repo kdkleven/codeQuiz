@@ -35,11 +35,11 @@ var questions = [
         question: "How do you call a function named \'myFunction\'?",
         answers: {
             a: "call function myFunction()",
-            b: "myFunction()",
+            b: "function(myFunction)",
             c: "call myFunction()",
-            d: "function(myFunction)"
+            d: "myFunction()"
         },
-        correctAnswer: "b"
+        correctAnswer: "d"
     },
     {
         question: "How do you create a function in JavaScript?",
@@ -54,22 +54,22 @@ var questions = [
     {
         question: "How do you write \'Hello World\' in an alert box?",
         answers: {
-            a: "alert(\'Hello World\')",
+            a: "msgBox(\'Hello World\')",
             b: "alertBox(\'Hello World\')",
             c: "msg(\'Hello World\')",
-            d: "msgBox(\'Hello World\')"
+            d: "alert(\'Hello World\')"
         },
-        correctAnswer: "a"
+        correctAnswer: "d"
     },
     {
         question: "The external JavaScript file must contain the <script> tag.",
         answers: {
-            a: "False",
+            a: "Neither",
             b: "True",
-            c: "Neither",
+            c: "False",
             d: "All of the above"
         },
-        correctAnswer: "a"
+        correctAnswer: "c"
     },
     {
         question: "What is the correct syntax for referring to an external script called \'xxx.js\'?",
@@ -84,12 +84,12 @@ var questions = [
     {
         question: "Where is the correct place to insert a JavaScript?",
         answers: {
-            a: "The <body> section",
-            b: "Both the <head> section and the <body> section are correct",
+            a: "The <meta> section",
+            b: "Both the <head> section and the <body> section",
             c: "The <head> section",
-            d: "The <meta> section"
+            d: "The <body> section"
         },
-        correctAnswer: "a"
+        correctAnswer: "b"
     },
     {
         question: "What is the correct JavaScript syntax to change the content of the HTML element? <p id=\'demo\'>This is a demonstration.</p>",
@@ -104,12 +104,12 @@ var questions = [
     {
         question: "Inside which HTML element do we put the JavaScript?",
         answers: {
-            a: "<script>",
+            a: "<scrip>",
             b: "<javascript>",
-            c: "<js>",
-            d: "<scripting>"
+            c: "<script>",
+            d: "<js>"
         },
-        correctAnswer: "a"
+        correctAnswer: "c"
     }
 ];
 
@@ -120,43 +120,53 @@ var time;
 var score = 0;
 var initials = "";
 
-//start();
-introView();
+quizWelcome();
 
-// function to start game
-// set timer, reset currentQuestion, call loadquestions
-// need a start quiz button
+// display the welcome page
 function quizWelcome() {
-    console.log("quizWelcome");
+    //console.log("quizWelcome");
+    
     // load intro view
-    //    introView();
-
+    introView();
+    
+    // click to view the high scores
+    $('#highscoresBtn').on("click", getHighscores);
+    
     // Start quiz when the button is clicked
     $("#startBtn").on("click", startQuiz);
+    
 }
 
+// configure the intro view
 function introView() {
-    console.log("introView");
-    // hide quiz view and end view
+    //console.log("introView");
+    
+    // hide quiz view, end view, and high scores view
     $('#timerText').addClass('hidden');
     $('.questionDiv').addClass('hidden');
     $('.answersDiv').addClass('hidden');
     $('.resultDiv').addClass('hidden');
     $('.endGameDiv').addClass('hidden');
-
-    quizWelcome();
+    $('.highscoresDiv').addClass('hidden');
+    $('#back').addClass('hidden');
 }
 
+// start the quiz
 function startQuiz() {
+    //console.log("startQuiz");
+
+    stopTime();
     quizView();
     setTime();
     loadQuestions();
 }
 
+// configure quiz view
 function quizView() {
-    console.log("quizView");
-    // Hide intro view and end view
-    $('#highscoresLink').addClass('hidden');
+    //console.log("quizView");
+
+    // Hide highscores, intro view and end view
+    $('#highscoresBtn').addClass('hidden');
     $('.quizStartDiv').addClass('hidden');
 
     // Show quiz view
@@ -164,36 +174,23 @@ function quizView() {
     $('.questionDiv').removeClass('hidden');
     $('.answersDiv').removeClass('hidden');
     $('.resultDiv').removeClass('hidden');
+    $('.score').removeClass('hidden');
+    $('.initials').removeClass('hidden');
 }
 
-function endView() {
-    console.log("endView");
-
-    // Hide intro view, and quizView
-    $('.questionDiv').addClass('hidden');
-    $('.answersDiv').addClass('hidden');
-    $('.resultDiv').addClass('hidden');
-    $('.timer').addClass('hidden');
-
-    // show end view
-    $('.endGameDiv').removeClass('hidden');
-
-}
-
-// function to set timer
-// // assign variable to the time element and set the timer to 60
-// countdown until the timer is 0 or the number of questions has been answered
+// start the timer
 function setTime() {
-    console.log("setTime");
+    //console.log("setTime");
+
     var timeEl = document.querySelector('#time');
-    
     secondsLeft = secondsLeft - 1;
     timeEl.textContent = secondsLeft;
     time = setTimeout(setTime, 1000);
 }
 
+// load questions onto the page
 function loadQuestions() {
-    console.log("loadQuestions");
+    //console.log("loadQuestions");
 
     $('#question').text(questions[currentQuestion].question);
     $('#a').text(questions[currentQuestion].answers.a);
@@ -205,95 +202,156 @@ function loadQuestions() {
     document.getElementById('b').addEventListener("click", response);
     document.getElementById('c').addEventListener("click", response);
     document.getElementById('d').addEventListener("click", response);
-
 }
 
-// comparing reponse to the correct answer
-// display correct or incorrect
-// decrement timer by -10 if incorrect answer
-// increment currentQuestion 
-// load result if all questions answered or time runs out
+// compare user's reponse to the correct answer
 function response() {
-    //
+    
     var response = $(this).attr('id');
-    //
-
     if (currentQuestion === 9) {
-        clearTimeout(secondsLeft);
-        score = secondsLeft;
+        gameOver();
+    }
+    else if (secondsLeft === 0) {
+        secondsLeft = 0;
         gameOver();
     }
     else if (response === questions[currentQuestion].correctAnswer) {
         $('#result').html('CORRECT!');
-        $('#result').fadeOut(1500, function() {
+        $('#result').fadeOut(2000, function () {
             $(this).html('').show();
         });
         currentQuestion += 1;
+        loadQuestions();
     }
     else {
         $('#result').html('INCORRECT!');
-        $('#result').fadeOut(1500, function() {
+        $('#result').fadeOut(2000, function () {
             $(this).html('').show();
         });
         if (secondsLeft < 10) {
-            clearTimeout(secondsLeft);
-            secondsLeft = 1;
+            secondsLeft = 0;
             gameOver();
         }
-            secondsLeft -= 10;
-            currentQuestion += 1;
+        secondsLeft -= 10;
+        currentQuestion += 1;
+        loadQuestions();
     }
-    console.log(currentQuestion);
-    loadQuestions();
+    // console.log(currentQuestion);
+}
+
+// stop the timer
+function stopTime() {
+    //console.log("stopTime");
+    clearTimeout(time);
+}
+
+// End the game
+function gameOver() {
     
-    
+    //console.log("gameOver");
+    //console.log(secondsLeft);
 
-    // END GAME function
-    // clear question page, load result page
-    // display high score button or restart button
-    // function for response onclick
-    // check if button pressed == questions[].currentquestion.correctAnswer
-    // handle correct (load next question and display CORRECT) vs incorrect answer (display incorrect -10s)
-    function gameOver() {
-        //var resultEl = document.querySelector('#result');      
-        console.log("gameOver");
-        console.log(secondsLeft);
-        
-        endView();
+    stopTime();
+    endView();
 
-        score = secondsLeft;
+    score = secondsLeft;
+    $('#score').html(score);
 
-        $('#score').html(score);
-        
-        $('#highScoreBtn').on("click", function() {
-            document.querySelector("#initials").value = initials;
-            if (initials.value.length == 0) {
+    if (score > 0) {
+        $('#initals').text("");
+        $('#endText').html("CONGRATULATIONS!");
+        $('#endSubText').html("You completed the quiz. Enter your initials and submit to record your Highscore.");
+        $('#submit').click(function () {
+            initials = $('#initials').val();
+
+            //console.log(initials);
+            if (initials.length == 0) {
                 alert("Please enter your initials");
             }
-            saveScore();
+            submitHighscore();
         });
-        $('#restartBtn').on("click", restartQuiz);       
+    } else {
+        $('#endText').html("YOU DIED");
+        $('#submit').addClass('hidden');
+        $('.initials').addClass('hidden');
+        $('#highscoresBtn').removeClass('hidden');
+    }   
+    
+    $('#restartBtn').on("click", restartQuiz);
+}
 
-    }
+// configure end game view
+function endView() {
+    //console.log("endView");
 
-function restartQuiz() {
     // Hide intro view, and quizView
-    $('.highscoresLink').removeClass('hidden');
+    $('.questionDiv').addClass('hidden');
+    $('.answersDiv').addClass('hidden');
+    $('.resultDiv').addClass('hidden');
+    $('.timer').addClass('hidden');
+
+    // show end view
+    $('.endGameDiv').removeClass('hidden');
+}
+
+// retreive highscores for display
+function getHighscores(){
+    
+    highScoresView();
+
+    var getScore = localStorage.getItem("score", score);
+    var getInitials = localStorage.getItem("initials", initials);
+
+    $('#scoreDisplay').append(getScore + " " + getInitials + "<br>");
+
+}
+
+// view highscores
+function submitHighscore () {
+    // console.log("submitHighscore");             
+    highScoresView();
+    saveScore();
+    getHighscores();
+}
+
+// configure highscores view
+function highScoresView() {
+    console.log("highscores view");
+    $('.quizStartDiv').addClass('hidden');
+    $('.endGameDiv').addClass('hidden');
+    $('.highscoresDiv').removeClass('hidden');
+    $('#restartBtn').removeClass('hidden');
+    $('#highscoresBtn').addClass('hidden');
+    $('#back').removeClass('hidden');
+    $('#back').click(restartQuiz);
+}
+
+// restart the quiz and initialize variables
+function restartQuiz() {
+    console.log("restartQuiz");
+    // Hide intro view, and quizView
+    $('#highscoresBtn').removeClass('hidden');
     $('.quizStartDiv').removeClass('hidden');
     $('.endGameDiv').addClass('hidden');
+    $('#submit').removeClass('hidden');
+    $('.initials').removeClass('hidden');
+    $('.highscoresDiv').addClass('hidden');
+
     currentQuestion = 0;
     secondsLeft = 60;
     score = 0;
     initials = "";
+
+    stopTime();
     quizWelcome();
 }
 
-    function saveScore() {
-        localStorage.setItem("initials", initials);
-        console.log(initials);
-        localStorage.setItem("score", score);
-    }
+// save scores to local storage
+function saveScore() {
+    // console.log("saveScore");
+    // console.log(initials);
+    
+    localStorage.setItem("initials", initials);
+    localStorage.setItem("score", score);
 }
-
-
 

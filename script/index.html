@@ -13,18 +13,24 @@
     <body>
         <div class="container">
             <header>
-                <h5 id="highscoresLink">Highscores</h5>
+                <button id="highscoresBtn">View Highscores</button>
                 <h6 id="timerText" class="timer">Timer: <span id="time"></span></h6>
             </header>
 
             <div class="quizStartDiv">
                 <h1>Coding Quiz Challenge</h1>
-                <p>Welcome to the most difficult coding quiz challenge you are ever going to face in your lifetime! Click the thingy to begin.</p>
+                <p class="subText">Welcome to the most difficult coding quiz challenge you are ever going to face in your lifetime! Click the thingy to begin.</p>
                 <button id="startBtn">Start Quiz</button>
             </div>
 
+            <div class="highscoresDiv">
+                <button id="back">Back</button>
+                <h2>Highscores</h2>
+                <p class="highscore"><span id="scoreDisplay"></span>  <span id="initialsDisplay"></span></p><br>
+            </div>
+
             <div class="questionDiv">
-                <h2 id="question"></h2>
+                <h4 id="question"></h4>
             </div>
 
             <div class="answersDiv">
@@ -35,17 +41,16 @@
                 <hr>
             </div>
             <div class="resultDiv">
-                <p id="result">
-
-                </p>
-                
+                <p id="result"></p>
+                    
             </div>
             <div class="endGameDiv">
-                <h3 id="endText">You're Dead. Submit your score as tribute.</h3>
-                <p>Score: <span id="score"></span></p>
-                <p>Initials: <input id="initials" type="text"></p>
+                <h3 id="endText"></h3>
+                <p id="endSubText" class="subText"></p>
+                <p class="score">Score: <span id="score"></span></p>
+                <p class="initials">Initials: <input id="initials" type="text"></p>
                 
-                <button id="highScoreBtn">Submit Score</button>
+                <button id="submit">Submit Score</button>
                 <button id="restartBtn">Restart Quiz</button>
             </div>
         </div>
