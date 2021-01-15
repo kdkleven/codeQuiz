@@ -13,7 +13,7 @@
     <body>
         <div class="container">
             <header>
-                <a id="highscoresLink">Highscores</a>
+                <h5 id="highscoresLink">Highscores</h5>
                 <h6 id="timerText" class="timer hidden">Timer: <span id="time"></span></h6>
             </header>
 
@@ -34,9 +34,13 @@
                 <button id="d"></button>
                 <hr>
             </div>
-            <div class="resultDiv" id="result"></div>
+            <div class="resultDiv" id="result">
+                <p class="hidden" id="correct">CORRECT!</p>
+                <p class="hidden" id="incorrect">INCORRECT!</p>
+            </div>
             <div class="endGameDiv hidden">
                 <h3 id="endText">You're Dead. Submit your score as tribute.</h3>
+                <input id="initials" type="text">Enter your initials: </input>
                 <button id="restartBtn">Restart Quiz</button>
                 <button id="highscoresBtn">View Highscores</button>
             </div>

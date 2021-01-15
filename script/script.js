@@ -12,104 +12,104 @@
 // ***DECLARE QUESTIONS***
 var questions = [
     {
-        question: "Q1",
+        question: "How to write an IF statement for executing some code if \'i\' is NOT equal to 5?",
         answers: {
-            a: "answer 1",
-            b: "answer 2", 
-            c: "answer 3", 
-            d: "answer 4"
+            a: "if i != 5 then",
+            b: "if (i != 5)", 
+            c: "if i <> 5", 
+            d: "if (i <> 5)"
+        }, 
+        correctAnswer: "b"
+    },
+    {
+        question: "How to write an IF statement in JavaScript?",
+        answers: {
+            a: "if (i == 5)",
+            b: "if i = 5", 
+            c: "if i = 5 then", 
+            d: "if i == 5 then"
         }, 
         correctAnswer: "a"
     },
     {
-        question: "Q2",
+        question: "How do you call a function named \'myFunction\'?",
         answers: {
-            a: "answer 1",
-            b: "answer 2", 
-            c: "answer 3", 
-            d: "answer 4"
-        }, 
-        correctAnswer: "c"
-    },
-    {
-        question: "Q3",
-        answers: {
-            a: "answer 1",
-            b: "answer 2", 
-            c: "answer 3", 
-            d: "answer 4"
+            a: "call function myFunction()",
+            b: "myFunction()", 
+            c: "call myFunction()", 
+            d: "function(myFunction)"
         }, 
         correctAnswer: "b"
     },
     {
-        question: "Q4",
+        question: "How do you create a function in JavaScript?",
         answers: {
-            a: "answer 1",
-            b: "answer 2", 
-            c: "answer 3", 
-            d: "answer 4"
+            a: "function:myFunction()",
+            b: "function myFunction()", 
+            c: "function = myFunction()", 
+            d: "function.myFunction()"
         }, 
         correctAnswer: "b"
     },
     {
-        question: "Q5",
+        question: "How do you write \'Hello World\' in an alert box?",
         answers: {
-            a: "answer 1",
-            b: "answer 2", 
-            c: "answer 3", 
-            d: "answer 4"
+            a: "alert('Hello World')",
+            b: "alertBox('Hello World')", 
+            c: "msg('Hello World')", 
+            d: "msgBox('Hello World')"
         }, 
-        correctAnswer: "d"
+        correctAnswer: "a"
     },
     {
-        question: "Q6",
+        question: "The external JavaScript file must contain the <script> tag.",
         answers: {
-            a: "answer 1",
-            b: "answer 2", 
-            c: "answer 3", 
-            d: "answer 4"
+            a: "False",
+            b: "True", 
+            c: "Neither", 
+            d: "All of the above"
         }, 
-        correctAnswer: "d"
+        correctAnswer: "a"
     },
     {
-        question: "Q7",
+        question: "What is the correct syntax for referring to an external script called \'xxx.js\'?",
         answers: {
-            a: "answer 1",
-            b: "answer 2", 
-            c: "answer 3", 
-            d: "answer 4"
+            a: "<script src='xxx.js'>",
+            b: "<script href='xxx.js'>", 
+            c: "<src script='xxx.js'>", 
+            d: "<script text='xxx.js'>"
         }, 
-        correctAnswer: "d"
+        correctAnswer: "a"
     },
     {
-        question: "Q8",
+        question: "Where is the correct place to insert a JavaScript?",
         answers: {
-            a: "answer 1",
-            b: "answer 2", 
-            c: "answer 3", 
-            d: "answer 4"
+            a: "The <body> section",
+            b: "Both the <head> section and the <body> section are correct", 
+            c: "The <head> section", 
+            d: "The <meta> section"
         }, 
-        correctAnswer: "d"
+        correctAnswer: "a"
     },
     {
-        question: "Q9",
+        question: "What is the correct JavaScript syntax to change the content of the HTML element? <p id=\'demo\'>This is a demonstration.</p>",
         answers: {
-            a: "answer 1",
-            b: "answer 2", 
-            c: "answer 3", 
-            d: "answer 4"
+            a: "document.getElement('p').innerHTML = 'Hello World!'",
+            b: "document.getElementById('demo').innerHTML = 'Hello World!'", 
+            c: "#demo.innerHTML = 'Hello World!'", 
+            d: "document.getElementByName('p').innerHTML = 'Hello World!'"
         }, 
-        correctAnswer: "d"
+        correctAnswer: "b"
     },
     {
-        question: "Q10",
+        question: "Inside which HTML element do we put the JavaScript?",
         answers: {
-            a: "answer 1",
-            b: "answer 2", 
-            c: "answer 3", 
-            d: "answer 4"
+            a: "<script>",
+            b: "<javascript>", 
+            c: "<js>", 
+            d: "<scripting>"
         }, 
-        correctAnswer: "d"
+        correctAnswer: "a"
     }
 ];
 
@@ -139,11 +139,11 @@ function initialize() {
     
     // clearTimeout(t);
     // secondsLeft = 60;
-    $('#result').html("");
-
     $("#startBtn").on("click", startQuiz);      
 }
 
+// function to set timer
+// // assign variable to the time element and set the timer to 60
 // countdown until the timer is 0 or the number of questions has been answered
 function setTime() {
     //
@@ -174,8 +174,7 @@ function loadQuestions() {
     // Hide elements
     $('.quizStartDiv').addClass('hidden');
     $('#highscoresLink').addClass('hidden');
-
-    $('#result').html("");
+    
 
     $('#question').html(questions[currentQuestion].question);
     $('#a').html(questions[currentQuestion].answers.a);
@@ -190,45 +189,58 @@ function loadQuestions() {
 
 }
 
-//
+// comparing reponse to the correct answer
+// display correct or incorrect
+// decrement timer by -10 if incorrect answer
+// increment currentQuestion 
+// load result if all questions answered or time runs out
 function response() {
     //
     var response = $(this).attr('id');
     var score;
     //
-    if (questions[currentQuestion].correctAnswer === response) {
-        //
-        $('#result').html("CORRECT!");
-        //
+    if (currentQuestion === 9 || secondsLeft <= 1) {
+        loadResult();   
+        
+    }
+    else if (questions[currentQuestion].correctAnswer === response) {
+//        $('#correct').text("CORRECT!");
+$('#correct').removeClass('hidden');
+    
+$('#correct').fadeOut(1500);
         currentQuestion += 1;
     } 
     else {
-        //
-        $('#result').html("INCORRECT!");
-        //
-        secondsLeft -= 10;        
-        //
-        if (secondsLeft < 10) {
-            secondsLeft = score;
-            stopTime();
-            loadResult();
-        }
-        //
+        $('.result').html("INCORRECT!");
         currentQuestion += 1;
-    }   
-    jQuery('#result').fadeOut(1500); 
-    setTimeout(loadQuestions, 1000);
+        
+        if (secondsLeft <= 11) {
+        secondsLeft -= 10;        
+        secondsLeft = 1;
+        loadResult();
+        }
+
+        
+    }           
+        
+    jQuery('.result').fadeOut(1500); 
+    setTimeout(loadQuestions, 500);
     
 }
 
 
-
+// END GAME function
+// clear question page, load result page
+// display high score button or restart button
+// function for response onclick
+// check if button pressed == questions[].currentquestion.correctAnswer
+// handle correct (load next question and display CORRECT) vs incorrect answer (display incorrect -10s)
 function loadResult() {
     //var resultEl = document.querySelector('#result');      
     console.log("loadResult called");
     stopTime();
     
-    var score = secondsLeft;
+    score = secondsLeft;
     
     // Show result, and restart and high scores buttons
     $('.result').removeClass('hidden');
@@ -239,28 +251,14 @@ function loadResult() {
     $('#highscoresLnk').addClass('hidden');
     $('.question').addClass('hidden');
     $('.answers').addClass('hidden');
+
+    $('#input');
     
-    $('').html(questions[currentQuestion].answers.d);
+    document.getElementById('a').addEventListener("click", response);
+    
 
 
 } 
-// END GAME function
-// clear question page, load result page
-// display high score button or restart button
-// function for response onclick
-// check if button pressed == questions[].currentquestion.correctAnswer
-// handle correct (load next question and display CORRECT) vs incorrect answer (display incorrect -10s)
-// if seconds < 10, end game set timer to 0
-function stopTime() {
-    console.log("stopTime called");
-    secondsLeft = 0;
-}
-
-// function to set timer
-// // assign variable to the time element and set the timer to 60
-
-
-
 
 
 
