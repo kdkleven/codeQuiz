@@ -14,7 +14,7 @@
         <div class="container">
             <header>
                 <h5 id="highscoresLink">Highscores</h5>
-                <h6 id="timerText" class="timer hidden">Timer: <span id="time"></span></h6>
+                <h6 id="timerText" class="timer">Timer: <span id="time"></span></h6>
             </header>
 
             <div class="quizStartDiv">
@@ -23,26 +23,30 @@
                 <button id="startBtn">Start Quiz</button>
             </div>
 
-            <div class="questionDiv hidden">
+            <div class="questionDiv">
                 <h2 id="question"></h2>
             </div>
 
-            <div class="answersDiv hidden">
+            <div class="answersDiv">
                 <button id="a"></button><br>
                 <button id="b"></button><br>
                 <button id="c"></button><br>
                 <button id="d"></button>
                 <hr>
             </div>
-            <div class="resultDiv" id="result">
-                <p class="hidden" id="correct">CORRECT!</p>
-                <p class="hidden" id="incorrect">INCORRECT!</p>
+            <div class="resultDiv">
+                <p id="result">
+
+                </p>
+                
             </div>
-            <div class="endGameDiv hidden">
+            <div class="endGameDiv">
                 <h3 id="endText">You're Dead. Submit your score as tribute.</h3>
-                <input id="initials" type="text">Enter your initials: </input>
+                <p>Score: <span id="score"></span></p>
+                <p>Initials: <input id="initials" type="text"></p>
+                
+                <button id="highScoreBtn">Submit Score</button>
                 <button id="restartBtn">Restart Quiz</button>
-                <button id="highscoresBtn">View Highscores</button>
             </div>
         </div>
         <script src="script.js"></script>

@@ -14,15 +14,14 @@ Build a timed quiz using JavaScript that stores high scores so I can gauge my pr
 
 ### How it works
 * Click the start button to start the quiz
-THEN a timer starts and I am presented with a question
-WHEN I answer a question
-THEN I am presented with another question
-WHEN I answer a question incorrectly
-THEN time is subtracted from the clock
-WHEN all questions are answered or the timer reaches 0
-THEN the game is over
-WHEN the game is over
-THEN I can save my initials and my score
+* A timer starts and you am presented with a question
+* Answer the question
+* See the result beneath the question
+* Answer another question
+* When you answer a question incorrectly, time is subtracted from the clock
+* When all questions are answered or the timer reaches 0
+* The game is over
+* After the game, you can can save my initials and my score, or restart the quiz
 
 ### The Deliverable
-<application link>
+https://kdkleven.github.io/uofm-bootcamp-homework-04/script/index.html
