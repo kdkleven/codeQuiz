@@ -1,14 +1,4 @@
 
-// Setup divs for start page, quiz page, result page, and highcore page (call each one at the appropriate time)
-// Questions page should include Question, with 4 answers (questions[0].question, questions[0].answers.a)
-// ask 5 questions ()
-// Correct/incorrect answer displys "Correct/Wrong" with audio (stretch)
-// Incorrect answers decrease timer by 10 seconds
-// when all questoins have been answered OR timer reaches 0, display "All Done" message
-// All done message should display final score, provide a text box for the user's initials (3 char), and a submit score button
-// then provide a button to either restart quiz or view high scores
-// high scores screen should display user iinitials and their score, with a link to go back to the quiz start screen
-
 // ***DECLARE QUESTIONS***
 var questions = [
     {
@@ -119,6 +109,8 @@ var secondsLeft = 60;
 var time;
 var score = 0;
 var initials = "";
+var highscores = [];
+var recordCount = 0;
 
 quizWelcome();
 
@@ -268,6 +260,7 @@ function gameOver() {
             if (initials.length == 0) {
                 alert("Please enter your initials");
             }
+            recordCount++;
             submitHighscore();
         });
     } else {
@@ -311,6 +304,7 @@ function submitHighscore () {
     // console.log("submitHighscore");             
     highScoresView();
     saveScore();
+    renderHighscores();
     getHighscores();
 }
 
@@ -353,5 +347,23 @@ function saveScore() {
     
     localStorage.setItem("initials", initials);
     localStorage.setItem("score", score);
+}
+var recordCountSpan = $('#recordCountSpan');
+
+function renderHighscores() {
+    $('#highscore').html = "";
+    recordCountSpan.text = highscores.length;
+                      
+    for (var i = 0; i < highscores.length; i++) {
+        var hScore = highscores[i];
+
+        var li = $('<li>');
+        li.textContent = hScore;
+        li.setAttribute("data-index", i);
+
+        $('#highscore').append(li);
+        
+    }
+    
 }
 
