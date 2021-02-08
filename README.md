@@ -24,4 +24,4 @@ Build a timed quiz using JavaScript that stores high scores so I can gauge my pr
 * After the game, you can can save my initials and my score, or restart the quiz
 
 ### The Deliverable
-https://kdkleven.github.io/uofm-bootcamp-homework-04/script/index.html
+https://kdkleven.github.io/codeQuiz/script/index.html
